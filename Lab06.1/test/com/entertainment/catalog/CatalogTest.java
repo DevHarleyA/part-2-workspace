@@ -46,11 +46,11 @@ public class CatalogTest {
 //    ...
 //  }
 
-  // When the compiler can infer types and know's what interface we're using, it can be rewritten with a Lambda
   @Test
   public void testSortByVolume() {
     List<Television> tvs = new ArrayList<>(Catalog.getInventory());
-    tvs.sort((tv1, tv2) -> Integer.compare(tv1.getVolume(), tv2.getVolume()));
+    // comparing int needs a mapping function
+    tvs.sort(Comparator.comparingInt(Television::getVolume));
     System.out.println(tvs);
   }
 
