@@ -9,8 +9,12 @@
 package com.entertainment.catalog;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.junit.Test;
@@ -36,6 +40,32 @@ public class CatalogTest {
       assertEquals("RCA", tv.getBrand());
     }
   }
+
+//  @Test
+//  public void testLoudest() {
+//    ...
+//  }
+
+  // When the compiler can infer types and know's what interface we're using, it can be rewritten with a Lambda
+  @Test
+  public void testSortByVolume() {
+    List<Television> tvs = new ArrayList<>(Catalog.getInventory());
+    tvs.sort((tv1, tv2) -> Integer.compare(tv1.getVolume(), tv2.getVolume()));
+    System.out.println(tvs);
+  }
+
+// Example using comparator
+//  @Test
+//  public void testSortByVolume() {
+//    List<Television> tvs = new ArrayList<>(Catalog.getInventory());
+//    tvs.sort(new Comparator<Television>() {
+//      @Override
+//      public int compare(Television tv1, Television tv2) {
+//        return Integer.compare(tv1.getVolume(), tv2.getVolume());
+//      }
+//    });
+//    System.out.println(tvs);
+//  }
   
   @Test
   public void testFindByBrandsNoneSpecified() {
